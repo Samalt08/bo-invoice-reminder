@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View Attendance
+{% endblock %}
+
+{% block header %}
+<h1>Attendance Records</h1>
+{% endblock %}
+
+{% block content %}
+  {% for club, students in attendance_data.items() %}
+    <h2>{{ club.capitalize() }} Club Attendance</h2>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Attendance Count</th>
+      </tr>
+      {% for student in students %}
+      <tr>
+        <td>{{ student['name'] }}</td>
+        <td>{{ student['count'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+  {% endfor %}
+{% endblock %}

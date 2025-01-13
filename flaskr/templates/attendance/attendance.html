@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Take Attendance{% endblock %}
+
+{% block header %}
+  <h1>Take Attendance</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="POST">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div>
+      <label for="club">Club:</label>
+      <select name="club" id="club" required>
+        {% for club in clubs %}
+          <option value="{{ club }}">{{ club }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
